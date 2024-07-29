@@ -8,4 +8,22 @@ public class Probability {
         this.probabilityValue = probabilityValue;
     }
 
+    @Override
+    public boolean equals(Object object) {
+        if(this == object) {
+            return true;
+        }
+        if(object == null || this.getClass() != object.getClass()) {
+            return false;
+        }
+
+        return this.probabilityValue == (((Probability) object).probabilityValue);
+    }
+
+    @Override
+    public int hashCode() {
+        double probabilityValue = this.probabilityValue;   // to follow object calisthenics, separated into two line
+        return Double.hashCode(probabilityValue);
+    }
+
 }
