@@ -32,4 +32,14 @@ public class ProbabilityTest {
 
         assertThat(ceratinEventProbability.and(ceratinEventProbability), is(equalTo(ceratinEventProbability)));
     }
+
+    @Test
+    void toCheckWhetherTheQuarterProbabilityEventAndHalfProbabilityEventHappeningTogetherIsOnePointOneTwoFiveProbability() {
+
+        Probability quarterProbability = new Probability(0.25);
+        Probability halfProbability = new Probability(0.5);
+        Probability onePointTwoFiveProbability = new Probability(0.125);
+
+        assertThat(quarterProbability.and(halfProbability), is(equalTo(onePointTwoFiveProbability)));
+    }
 }
