@@ -42,4 +42,22 @@ public class ProbabilityTest {
 
         assertThat(quarterProbability.and(halfProbability), is(equalTo(onePointTwoFiveProbability)));
     }
+
+    @Test
+    void toCheckTheProbabilityOfACertainEventNotOccurringIsEqualToTheProbabilityOfAnImpossibleEvent() {
+
+        Probability ceratinEventProbability = new Probability(1);
+        Probability impossibleEventProbability = new Probability(0);
+
+        assertThat(ceratinEventProbability.not(), is(equalTo(impossibleEventProbability)));
+    }
+
+    @Test
+    void toCheckWhetherTheProbabilityOfHeadInACoinTossNotOccurringIsEqualToHalfProbability() {
+
+        Probability probabilityOfHead = new Probability(0.5);
+        Probability halfAProbability = new Probability(0.5);
+
+        assertThat(probabilityOfHead.not(), is(equalTo(halfAProbability)));
+    }
 }

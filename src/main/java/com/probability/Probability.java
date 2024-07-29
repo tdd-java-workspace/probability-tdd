@@ -29,4 +29,11 @@ public class Probability {
     public Probability and(Probability probabilityToBeChecked) {
         return new Probability( this.probabilityValue * probabilityToBeChecked.probabilityValue );
     }
+
+    public Probability not() {
+
+        int certainEventProbability = 1;
+
+        return new Probability( certainEventProbability - this.probabilityValue );
+    }
 }
