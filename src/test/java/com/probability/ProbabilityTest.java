@@ -1,5 +1,6 @@
 package com.probability;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -7,11 +8,33 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ProbabilityTest {
 
+    private static Probability probabilityOfHead;
+    private static Probability probabilityOfTail;
+    private static Probability probabilityOfOneInADice;
+    private static Probability ceratinEventProbability;
+    private static Probability halfProbability;
+    private static Probability quarterProbability;
+    private static Probability onePointTwoFiveProbability;
+    private static Probability impossibleEventProbability;
+
+    @BeforeAll
+    static void beforeAll() {
+        probabilityOfHead = new Probability(0.5);
+        probabilityOfTail = new Probability(0.5);
+
+        probabilityOfOneInADice = new Probability(0.167);
+
+        ceratinEventProbability = new Probability(1);
+        impossibleEventProbability = new Probability(0);
+
+
+        halfProbability = new Probability(0.5);
+        quarterProbability = new Probability(0.25);
+        onePointTwoFiveProbability = new Probability(0.125);
+    }
+
     @Test
     void toCheckEqualityWhenTheProbabilityOfGettingHeadInACoinIsComparedWithTheProbabilityOfGettingTailInACoin() {
-
-        Probability probabilityOfHead = new Probability(0.5);
-        Probability probabilityOfTail = new Probability(0.5);
 
         assertThat(probabilityOfHead, is(equalTo(probabilityOfTail)));
     }
@@ -19,16 +42,11 @@ public class ProbabilityTest {
     @Test
     void toCheckInEqualityWhenTheProbabilityOfGettingHeadIsComparedWithProbabilityOfOneInADice() {
 
-        Probability probabilityOfHead = new Probability(0.5);
-        Probability probabilityOfOneInADice = new Probability(0.167);
-
         assertThat(probabilityOfHead, is(not(equalTo(probabilityOfOneInADice))));
     }
 
     @Test
     void toCheckWhetherTheProbabilityOfTwoCertainEventsHappeningTogetherIsAlsoAnCertainEvent() {
-
-        Probability ceratinEventProbability = new Probability(1);
 
         assertThat(ceratinEventProbability.and(ceratinEventProbability), is(equalTo(ceratinEventProbability)));
     }
@@ -36,18 +54,11 @@ public class ProbabilityTest {
     @Test
     void toCheckWhetherTheQuarterProbabilityEventAndHalfProbabilityEventHappeningTogetherIsOnePointOneTwoFiveProbability() {
 
-        Probability quarterProbability = new Probability(0.25);
-        Probability halfProbability = new Probability(0.5);
-        Probability onePointTwoFiveProbability = new Probability(0.125);
-
         assertThat(quarterProbability.and(halfProbability), is(equalTo(onePointTwoFiveProbability)));
     }
 
     @Test
     void toCheckTheProbabilityOfACertainEventNotOccurringIsEqualToTheProbabilityOfAnImpossibleEvent() {
-
-        Probability ceratinEventProbability = new Probability(1);
-        Probability impossibleEventProbability = new Probability(0);
 
         assertThat(ceratinEventProbability.not(), is(equalTo(impossibleEventProbability)));
     }
@@ -55,9 +66,6 @@ public class ProbabilityTest {
     @Test
     void toCheckWhetherTheProbabilityOfHeadInACoinTossNotOccurringIsEqualToHalfProbability() {
 
-        Probability probabilityOfHead = new Probability(0.5);
-        Probability halfAProbability = new Probability(0.5);
-
-        assertThat(probabilityOfHead.not(), is(equalTo(halfAProbability)));
+        assertThat(probabilityOfHead.not(), is(equalTo(halfProbability)));
     }
 }
