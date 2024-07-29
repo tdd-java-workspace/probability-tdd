@@ -24,4 +24,12 @@ public class ProbabilityTest {
 
         assertThat(probabilityOfHead, is(not(equalTo(probabilityOfOneInADice))));
     }
+
+    @Test
+    void toCheckWhetherTheProbabilityOfTwoCertainEventsHappeningTogetherIsAlsoAnCertainEvent() {
+
+        Probability ceratinEventProbability = new Probability(1);
+
+        assertThat(ceratinEventProbability.and(ceratinEventProbability), is(equalTo(ceratinEventProbability)));
+    }
 }

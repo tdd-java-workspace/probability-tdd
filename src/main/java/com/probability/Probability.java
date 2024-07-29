@@ -26,4 +26,7 @@ public class Probability {
         return Double.hashCode(probabilityValue);
     }
 
+    public Probability and(Probability probabilityToBeChecked) {
+        return new Probability( this.probabilityValue * probabilityToBeChecked.probabilityValue );
+    }
 }
