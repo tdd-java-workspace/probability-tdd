@@ -3,6 +3,7 @@ package com.probability;
 public class Probability {
 
     double probabilityValue;
+    private final double certainEventProbability = 1;
 
     public Probability(double probabilityValue) {
         this.probabilityValue = probabilityValue;
@@ -30,9 +31,13 @@ public class Probability {
         return new Probability( this.probabilityValue * probabilityToBeChecked.probabilityValue );
     }
 
-    public Probability not() {
+    public Probability or(Probability probabilityToBeChecked) {
+        //    (A intersection B)' = A' union B'
+        //    A intersection B = (A' union B')'
+        return not().and(probabilityToBeChecked.not()).not();
+    }
 
-        int certainEventProbability = 1;
+    public Probability not() {
 
         return new Probability( certainEventProbability - this.probabilityValue );
     }
